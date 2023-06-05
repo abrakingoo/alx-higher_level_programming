@@ -15,13 +15,13 @@ int check_cycle(listint_t *list)
 	listint_t *top = list->next;
 	listint_t *normal = list;
 
-	if (!list)
-	{
-		return (0);
-	}
 
 	while (top != NULL && top->next != NULL && normal != NULL)
 	{
+		if (!list)
+		{
+			return (0);
+		}
 
 		if (top == normal)
 		{
