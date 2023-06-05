@@ -12,7 +12,7 @@
 int check_cycle(listint_t *list)
 {
 
-	listint_t *top = list;
+	listint_t *top = list->next;
 	listint_t *normal = list;
 
 	if (!list)
