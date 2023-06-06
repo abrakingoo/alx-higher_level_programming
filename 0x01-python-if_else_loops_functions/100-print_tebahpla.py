@@ -11,4 +11,5 @@ for i in range(26):
 
         new_str += chr(65 + i)
 
-print("{}".format(new_str[::-1]))
+reversed_str = new_str[::-1].swapcase()
+print("{}".format(reversed_str))
