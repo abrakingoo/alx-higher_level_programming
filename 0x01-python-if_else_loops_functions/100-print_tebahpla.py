@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 new_str = ""
-for i in range(26):
+for i in range(25):
 
     if i % 2 == 0:
 
