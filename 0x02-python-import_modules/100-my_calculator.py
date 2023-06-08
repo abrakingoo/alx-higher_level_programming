@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     length = len(argv)
 
-    if length < 3:
+    if length != 3:
 
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
 
