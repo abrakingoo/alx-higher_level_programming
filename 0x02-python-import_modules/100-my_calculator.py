@@ -16,6 +16,7 @@ if __name__ == "__main__":
     num1 = int(argv[1])
     num2 = int(argv[3])
     operator = argv[2]
+    operators = ["+", "-", "*", "/"]
 
     if operator == "+":
         print("{:d} + {:d} = {:d}".format(num1, num2, add(num1, num2)))
@@ -23,12 +24,12 @@ if __name__ == "__main__":
     elif operator == "-":
         print("{:d} - {:d} = {:d}".format(num1, num2, sub(num1, num2)))
 
-    elif operator == "+":
+    elif operator == "*":
         print("{:d} * {:d} = {:d}".format(num1, num2, mul(num1, num2)))
 
     elif operator == "/":
         print("{:d} / {:d} = {:d}".format(num1, num2, div(num1, num2)))
 
-    else:
+    elif operator not in operators:
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
