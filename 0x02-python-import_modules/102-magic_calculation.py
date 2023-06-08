@@ -14,4 +14,3 @@ def magic_calculation(a, b):
 if __name__ == "__main__":
     result = magic_calculation(4, 7)
     print(result)
-
