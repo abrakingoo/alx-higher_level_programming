@@ -55,9 +55,7 @@ class Square:
             print()
 
         else:
-            for _ in range(self.size):
-                for _ in range(self.__position[0]):
-                    print(" ", end="")
-                for _ in range(self.size):
-                    print("#", end="")
-                print()
+            hashed = '#' * self.__size
+            space = ' ' * self.__position[0]
+            for x in range(self.__size):
+                print(space, hashed, sep="")
