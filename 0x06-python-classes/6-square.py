@@ -27,7 +27,7 @@ class Square:
         return self.__position
 
     @position.setter
-    def size(self, position=(0, 0)):
+    def size(self, position):
         """setting the new value for the private attribute"""
         if not isinstance(position[0], int) \
                 and not isinstance(position[1], int):
