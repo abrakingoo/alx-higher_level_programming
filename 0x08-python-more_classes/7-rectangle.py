@@ -76,7 +76,8 @@ class Rectangle:
 
         symbol = str(Rectangle.print_symbol)
         for i in range(self.__height):
-            mystr += symbol * self.__width
+            for _ in range(self.__width):
+                mystr += str(self.print_symbol)
             if i != self.__height - 1:
                 mystr += "\n"
 
