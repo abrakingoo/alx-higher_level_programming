@@ -20,4 +20,16 @@
 	Traceback (most recent call last):
   	...
 	NameError: name 'my_list2' is not defined
+	>>> my_list = MyList()
+	>>> my_list.append(5)
+	>>> my_list.append(1)
+	>>> my_list.append(-1)
+	>>> my_list.append(51)
+	>>> my_list.append(-5)
+	>>> my_list.print_sorted()
+	[-5, -1, 1, 5, 51]
+	>>> a = []
+	>>> my_list = MyList(a)
+	>>> my_list.print_sorted()
+	[]
 	>>>
