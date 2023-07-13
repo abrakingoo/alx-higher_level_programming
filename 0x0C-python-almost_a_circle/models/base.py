@@ -55,3 +55,12 @@ class Base:
                 my_list.append(obj.to_dictionary())
             with open(file_name, "w", encoding="utf-8") as file:
                 json.dump(my_list, file)
+
+
+    @staticmethod
+    def from_json_string(json_string):
+        if json_string is None:
+            return []
+
+        else:
+            return json.loads(json_string)
