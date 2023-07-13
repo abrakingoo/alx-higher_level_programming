@@ -41,3 +41,17 @@ class Base:
 
         else:
             return json.dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        file_name = cls.__name__+".json"
+        if list_objs is None:
+            with open(file_name, "w") as file:
+                json.dump([], file)
+
+        else:
+            my_list = []
+            for obj in list_objs:
+                my_list.append(obj.to_dictionary())
+            with open(file_name, "w", encoding="utf-8") as file:
+                json.dump(my_list, file)
