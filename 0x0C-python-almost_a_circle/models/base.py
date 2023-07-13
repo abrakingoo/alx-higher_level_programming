@@ -2,6 +2,7 @@
 """
 This class will be the “base” of all other classes in this project.
 """
+import json
 
 
 class Base:
@@ -25,5 +26,18 @@ class Base:
             self.id = id
 
         else:
-             self.__class__.__nb_objects += 1
-             self.id = self.__class__.__nb_objects
+            self.__class__.__nb_objects += 1
+            self.id = self.__class__.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """
+         static method def to_json_string(list_dictionaries): that
+         returns the JSON string representation of list_dictionaries:
+         """
+
+        if list_dictionaries is None:
+            return []
+
+        else:
+            return json.dumps(list_dictionaries)
