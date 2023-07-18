@@ -1,28 +1,22 @@
 #!/usr/bin/python3
+"""Contains the Base class
 """
-This class will be the “base” of all other classes in this project.
-"""
+
+
 import json
 
 
 class Base:
-    """
-    Class Base: with
-    private class attribute __nb_objects = 0
+    """Base class for other classes
+
+    Creates a private class attribute
     """
     __nb_objects = 0
 
     def __init__(self, id=None):
+        """Class constructor
         """
-        class constructor:
-            :if id is not None, assign the public instance
-            attribute id with this argument value
-
-            :otherwise, increment __nb_objects and assign the new value
-            to the public instance attribute id
-        """
-
-        if id is not None:
+        if id:
             self.id = id
 
         else:
@@ -31,36 +25,74 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        """returns the JSON string representation of list_dictionaries
         """
-         static method def to_json_string(list_dictionaries): that
-         returns the JSON string representation of list_dictionaries:
-         """
-
         if list_dictionaries is None:
-            return []
+            return "[]"
 
-        else:
-            return json.dumps(list_dictionaries)
+        if not list_dictionaries:
+            return "[]"
+
+        return (json.dumps(list_dictionaries))
 
     @classmethod
     def save_to_file(cls, list_objs):
-        file_name = cls.__name__+".json"
-        if list_objs is None:
-            with open(file_name, "w") as file:
-                json.dump([], file)
+        """writes the JSON string representation of list_objs to a file
+        """
+        filename = "{}.json".format(cls.__name__)
 
-        else:
-            my_list = []
+        my_list = []
+
+        if list_objs is not None:
             for obj in list_objs:
-                my_list.append(obj.to_dictionary())
-            with open(file_name, "w", encoding="utf-8") as file:
-                json.dump(my_list, file)
+                my_list.append(cls.to_dictionary(obj))
 
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(cls.to_json_string(my_list))
 
     @staticmethod
     def from_json_string(json_string):
-        if json_string is None:
+        """ returns the list of the JSON string representation json_string
+        """
+        if json_string is None or not json_string:
             return []
 
+        return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """returns an instance with all attributes already set
+        """
+        from models.rectangle import Rectangle
+        from models.square import Square
+
+        if cls is Rectangle:
+            dummy = Rectangle(2, 1)
+
+        elif cls is Square:
+            dummy = Square(1)
+
         else:
-            return json.loads(json_string)
+            dummy = None
+        dummy.update(**dictionary)
+        return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """returns a list of instances
+        """
+        filename = "{}.json".format(cls.__name__)
+
+        lst = []
+
+        try:
+            with open(filename, "r") as f:
+                lst = cls.from_json_string(f.read())
+
+            for i, val in enumerate(lst):
+                lst[i] = cls.create(**lst[i])
+
+        except FileNotFoundError:
+            pass
+
+        return lst
