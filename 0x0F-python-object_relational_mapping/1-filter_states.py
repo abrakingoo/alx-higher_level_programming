@@ -16,9 +16,13 @@ if __name__ == "__main__":
                            user=user, password=pswrd, database=db)
 
     cur = conn.cursor()
-    querry = f"SELECT * FROM states WHERE name \
-                LIKE 'N%' ORDER BY states.id ASC"
-    cur.execute(querry)
+    query = """
+        SELECT *
+        FROM states
+        WHERE name LIKE 'N%'
+        ORDER BY id ASC
+        """
+    cur.execute(query)
     states = cur.fetchall()
 
     for state in states:
