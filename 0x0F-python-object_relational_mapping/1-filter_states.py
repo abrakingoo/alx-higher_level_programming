@@ -8,25 +8,27 @@ if __name__ == "__main__":
     from sys import argv
     import MySQLdb
 
-    user = argv[1]
-    pswrd = argv[2]
-    db = argv[3]
+    try:
+        conn = MySQLdb.connect(
+            host="localhost",
+            user=argv[1],
+            passwd=argv[2],
+            port=3306,
+            db=argv[3]
+        )
 
-    conn = MySQLdb.connect(host="localhost", port=3306,
-                           user=user, password=pswrd, database=db)
-
-    cur = conn.cursor()
-    query = """
+        query = """
         SELECT *
         FROM states
         WHERE name LIKE 'N%'
         ORDER BY id ASC
         """
-    cur.execute(query)
-    states = cur.fetchall()
-
-    for state in states:
-        print(state)
-
+        cur = conn.cursor()
+        cur.execute(query)
+        rows = cur.fetchall()
+        for row in rows:
+            print(row)
+    except MySQLdb.Error:
+        print("execution failed")
     cur.close()
     conn.close()
