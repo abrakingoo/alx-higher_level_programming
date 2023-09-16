@@ -15,11 +15,6 @@ if __name__ == "__main__":
         conn = MySQLdb.connect(host="localhost", port=3306, user=usr,
                                password=pswd, database=db)
 
-    except MySQLdb.Error:
-        print("error connecting")
-
-    try:
-
         cur = conn.cursor()
 
         query = """SELECT *
@@ -38,5 +33,6 @@ if __name__ == "__main__":
     except MySQLdb.Error as e:
         print("ERROR: {} ".format(e))
 
-    cur.close()
-    conn.close()
+    finally:
+        cur.close()
+        conn.close()
