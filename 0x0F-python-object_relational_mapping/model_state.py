@@ -18,8 +18,10 @@ class State(Base):
     """
 
     __tablename__ = 'states'
-
-    id = column(Integer, Sequence('my_sequence'), primary_key=True,
-                nullable=False)
-
-    name = column(String(128), nullable=False)
+    id = Column(
+        Integer,
+        Sequence('my_sequence'),
+        primary_key=True,
+        nullable=False
+        )
+    name = Column(String(128), nullable=False)
