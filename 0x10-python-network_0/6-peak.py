@@ -12,9 +12,15 @@ def find_peak(list_of_integers):
     if not list_of_integers:
         return None
 
-    positive_peaks = [num for num in list_of_integers if num >= 0]
+    left = 0
+    right = len(list_of_integers) - 1
 
-    if positive_peaks:
-        return max(positive_peaks)
+    while left < right:
+        mid = (left + right) // 2
 
-    return max(list_of_integers)
+        if list_of_integers[mid] < list_of_integers[mid + 1]:
+            left = mid + 1
+        else:
+            right = mid
+
+    return list_of_integers[left]
